@@ -43,8 +43,8 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                     case android:
                         desiredCaps.setCapability(AUTOMATION_NAME, "uiautomator2");
                         desiredCaps.setCapability(UDID, udid);
-                        desiredCaps.setCapability(APP_PACKAGE, "com.wdiodemoapp");
-                        desiredCaps.setCapability(APP_ACTIVITY, "com.wdiodemoapp.MainActivity");
+                        desiredCaps.setCapability(APP_PACKAGE, "com.hahalolo.android.halome");
+                        desiredCaps.setCapability(APP_ACTIVITY, "com.halo.presentation.startapp.start.StartAct");
                         desiredCaps.setCapability(SYSTEM_PORT, Integer.parseInt(systemPort));
                         appiumDriver = new AndroidDriver<>(targetServer, desiredCaps);
                         break;
@@ -52,7 +52,7 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         desiredCaps.setCapability(AUTOMATION_NAME, "XCUITest");
                         desiredCaps.setCapability(DEVICE_NAME, udid); //iPhone 12
                         desiredCaps.setCapability(PLATFORM_VERSION, platformVersion); // 15.0 NOT 15.1.2
-                        desiredCaps.setCapability(BUNDLE_ID, "org.wdioNativeDemoApp");
+                        desiredCaps.setCapability(BUNDLE_ID, "com.hahalolo.ios.halome");
                         desiredCaps.setCapability(WDA_LOCAL_PORT, Integer.parseInt(systemPort));
                         appiumDriver = new IOSDriver<>(targetServer, desiredCaps);
                 }
@@ -65,7 +65,7 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                 throw new RuntimeException(exception.getMessage());
             }
 
-            // Add IMPLICIT WAIT HERE
+            // Add IMPLICIT WAIT
             appiumDriver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
         }
         return appiumDriver;
