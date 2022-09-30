@@ -7,14 +7,11 @@ import test_flows.login.WelcomeFlow;
 
 public class WelcomeScreenTest extends BaseTest {
 
-    @Test
+    @Test (description = "Verify UI on Welcome screen")
     @Description("Verify UI on Welcome screen")
     public void testUI() {
         WelcomeFlow welcomeFlow = new WelcomeFlow(getDriver());
-        welcomeFlow.verifyHiTxtStr();
-        welcomeFlow.verifyQuestionTxtStr();
-        welcomeFlow.verifyLoginHHLLBtn();
-        welcomeFlow.verifyLoginAnonymouslyBtn();
+        welcomeFlow.verifyUI();
     }
 
 }
