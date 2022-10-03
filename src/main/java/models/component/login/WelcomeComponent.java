@@ -13,7 +13,6 @@ import java.time.Duration;
 public class WelcomeComponent {
 
     private final AppiumDriver<MobileElement> appiumDriver;
-    private String language;
 
     public WelcomeComponent(AppiumDriver<MobileElement> appiumDriver) {
         this.appiumDriver = appiumDriver;
@@ -38,10 +37,14 @@ public class WelcomeComponent {
 
     @AndroidFindBy(id = "")
     @iOSXCUITFindBy(accessibility = "English")
-    public MobileElement languageTxtElem;
+    public MobileElement countryTxtElem;
 
     @AndroidFindBy(id = "")
     @iOSXCUITFindBy(accessibility = "Language")
+    public MobileElement languageTxtElem;
+
+    @AndroidFindBy(id = "")
+    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[3]")
     public MobileElement languageBtnElem;
 
     @Step("Get Hi there! text")
@@ -62,6 +65,11 @@ public class WelcomeComponent {
     @Step("Click on Login Anonymously button")
     public void clickOnLoginAnonymouslyBtn() {
         loginAnonymouslyBtnElem.click();
+    }
+
+    @Step("Get Country's name text")
+    public String getCountryTxtStr() {
+        return countryTxtElem.getText().trim();
     }
 
     @Step("Get Language text")

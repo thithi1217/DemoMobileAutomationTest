@@ -19,4 +19,8 @@ public class BaseFlow {
     public void goToLoginAnonymouslyScreen() {
         new WelcomeScreen(appiumDriver).welcomeComponent().clickOnLoginAnonymouslyBtn();
     }
+
+    public void goToLanguageModal() {
+        new WelcomeScreen(appiumDriver).welcomeComponent().clickOnLanguageBtn();
+    }
 }
