@@ -9,6 +9,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LanguageComponent {
 
@@ -24,8 +26,8 @@ public class LanguageComponent {
     public MobileElement titleTxtElem;
 
     @AndroidFindBy(id = "")
-    @iOSXCUITFindBy(iOSNsPredicate = "type == \"XCUIElementTypeTable\"")
-    public MobileElement languageTableElem;
+    @iOSXCUITFindBy(iOSClassChain = "**XCUIElementTypeCell/XCUIElementTypeStaticText")
+    public List<MobileElement> languageTableElem;
 
     @AndroidFindBy(id = "")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Ok\"`]")
@@ -35,6 +37,14 @@ public class LanguageComponent {
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Cancel\"`]")
     public MobileElement cancelBtnElem;
 
+    @Step("Get all list country")
+    public List<String> getListCountry() {
+        List<String> listCountry = new ArrayList<>();
+        for (MobileElement countryElem : languageTableElem) {
+            listCountry.add(countryElem.getAttribute("label"));
+        }
+        return listCountry;
+    }
     @Step("Click on Cancel button")
     public void clickOnCancelBtn() {
         cancelBtnElem.click();

@@ -7,7 +7,12 @@ import models.component.login.LanguageComponent;
 import models.component.login.WelcomeComponent;
 import models.pages.login.WelcomeScreen;
 import org.testng.asserts.SoftAssert;
+import test_data.DataObjectBuilder;
+import test_data.models.LanguageData;
 import test_flows.BaseFlow;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WelcomeFlow extends BaseFlow {
 
@@ -18,6 +23,7 @@ public class WelcomeFlow extends BaseFlow {
     private final String expectedLoginAnonymouslyBtnLabel = "Log in Anonymously";
     private final String expectedCountryTxtStr = "English";
     private final String expectedLanguageTxtStr = "Language";
+    private final String fileLanguageDataPath = "/src/main/java/test_data/login/Language.json";
 
     public WelcomeFlow(AppiumDriver<MobileElement> appiumDriver) {
         super(appiumDriver);
@@ -39,6 +45,20 @@ public class WelcomeFlow extends BaseFlow {
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         LanguageComponent languageComponent = welcomeScreen.languageComponent();
 
+        // TODO: compare data from two list
+        List<String> actualCountryList = languageComponent.getListCountry();
+
+        LanguageData[] languageData = DataObjectBuilder.buildDataObject(fileLanguageDataPath, LanguageData[].class);
+        List<String> expectedLanguageList = new ArrayList<>();
+
+        for (LanguageData expectedLang : languageData) {
+            expectedLanguageList.add(expectedLang.getLabel());
+        }
+
+        for (String s : expectedLanguageList) {
+            System.out.println(s);
+        }
+        System.out.println(expectedLanguageList.size());
         languageComponent.clickOnCancelBtn();
     }
 

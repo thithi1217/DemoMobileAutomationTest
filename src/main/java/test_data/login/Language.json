@@ -1,0 +1,242 @@
+[
+  {
+    "code": "en",
+    "label": "English"
+  },
+  {
+    "code": "vi",
+    "label": "Tiếng Việt"
+  },
+  {
+    "code": "es",
+    "label": "Español"
+  },
+  {
+    "code": "pt",
+    "label": "Português"
+  },
+  {
+    "code": "hi",
+    "label": "हिन्दी"
+  },
+  {
+    "code": "ru",
+    "label": "Русский"
+  },
+  {
+    "code": "zh",
+    "label": "中文(简体)"
+  },
+  {
+    "code": "ja",
+    "label": "日本語"
+  },
+  {
+    "code": "ko",
+    "label": "한국어"
+  },
+  {
+    "code": "de",
+    "label": "Deutsch"
+  },
+  {
+    "code": "fr",
+    "label": "Français"
+  },
+  {
+    "code": "id",
+    "label": "Bahasa Indonesia"
+  },
+  {
+    "code": "th",
+    "label": "ภาษาไทย"
+  },
+  {
+    "code": "it",
+    "label": "Italiano"
+  },
+  {
+    "code": "ms",
+    "label": "Bahasa Melayu"
+  },
+  {
+    "code": "my",
+    "label": "ြန်မာဘာသာ"
+  },
+  {
+    "code": "fil",
+    "label": "Filipino"
+  },
+  {
+    "code": "bn",
+    "label": "বাংলা"
+  },
+  {
+    "code": "sw",
+    "label": "Kiswahili"
+  },
+  {
+    "code": "tr",
+    "label": "Türkçe"
+  },
+  {
+    "code": "ta",
+    "label": "தமிழ்"
+  },
+  {
+    "code": "uk",
+    "label": "Українська"
+  },
+  {
+    "code": "fi",
+    "label": "Suomi"
+  },
+  {
+    "code": "sl",
+    "label": "Slovenščina"
+  },
+  {
+    "code": "pl",
+    "label": "Polski"
+  },
+  {
+    "code": "ro",
+    "label": "Română"
+  },
+  {
+    "code": "be",
+    "label": "Беларуская"
+  },
+  {
+    "code": "az",
+    "label": "Azərbaycan dili"
+  },
+  {
+    "code": "tt",
+    "label": "Татарча"
+  },
+  {
+    "code": "el",
+    "label": "Ελληνικά"
+  },
+  {
+    "code": "bg",
+    "label": "Български"
+  },
+  {
+    "code": "hu",
+    "label": "Magyar"
+  },
+  {
+    "code": "sr",
+    "label": "Српски"
+  },
+  {
+    "code": "cs",
+    "label": "Čeština"
+  },
+  {
+    "code": "kk",
+    "label": "Қазақша"
+  },
+  {
+    "code": "lt",
+    "label": "Lietuvių"
+  },
+  {
+    "code": "lv",
+    "label": "Latviešu"
+  },
+  {
+    "code": "hr",
+    "label": "Hrvatski"
+  },
+  {
+    "code": "bs",
+    "label": "Bosanski"
+  },
+  {
+    "code": "sk",
+    "label": "Slovenčina"
+  },
+  {
+    "code": "et",
+    "label": "Eesti"
+  },
+  {
+    "code": "nl",
+    "label": "Nederlands"
+  },
+  {
+    "code": "sq",
+    "label": "Shqip"
+  },
+  {
+    "code": "ca",
+    "label": "Català"
+  },
+  {
+    "code": "sv",
+    "label": "Svenska"
+  },
+  {
+    "code": "co",
+    "label": "Corsu"
+  },
+  {
+    "code": "da",
+    "label": "Dansk"
+  },
+  {
+    "code": "gl",
+    "label": "Galego"
+  },
+  {
+    "code": "mk",
+    "label": "Македонски"
+  },
+  {
+    "code": "ka",
+    "label": "ქართული"
+  },
+  {
+    "code": "hy",
+    "label": "Հայերեն"
+  },
+  {
+    "code": "am",
+    "label": "አማርኛ"
+  },
+  {
+    "code": "jv",
+    "label": "Bahasa Jawa"
+  },
+  {
+    "code": "mn",
+    "label": "Монгол"
+  },
+  {
+    "code": "mg",
+    "label": "Malagasy"
+  },
+  {
+    "code": "ku",
+    "label": "Kurdî"
+  },
+  {
+    "code": "so",
+    "label": "Af-Soomaali"
+  },
+  {
+    "code": "sn",
+    "label": "Shona"
+  },
+  {
+    "code": "rw",
+    "label": "Ikinyarwanda"
+  },
+  {
+    "code": "af",
+    "label": "Afrikaans"
+  }
+]
