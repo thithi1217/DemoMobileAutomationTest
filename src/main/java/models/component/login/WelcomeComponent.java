@@ -19,31 +19,31 @@ public class WelcomeComponent {
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, Duration.ofSeconds(15)), this);
     }
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/start_tv")
     @iOSXCUITFindBy(accessibility = "Hi there!")
     public MobileElement hiTxtElem;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/caption_tv")
     @iOSXCUITFindBy(accessibility = "Which account do you want to use? HAHALOLO or anonymous account?")
     public MobileElement questionTxtElem;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/hahalolo_bt")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label == \"Log in with Hahalolo\"`]")
     public MobileElement loginHHLLBtnElem;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/incognito_bt")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Log in Anonymously\"`]")
     public MobileElement loginAnonymouslyBtnElem;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/lang_tv")
     @iOSXCUITFindBy(accessibility = "English")
     public MobileElement countryTxtElem;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(xpath = "//*[@text=\"Language\"]")
     @iOSXCUITFindBy(accessibility = "Language")
     public MobileElement languageTxtElem;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/language_wr")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[3]")
     public MobileElement languageBtnElem;
 

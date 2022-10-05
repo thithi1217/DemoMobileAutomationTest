@@ -13,6 +13,7 @@ import test_flows.BaseFlow;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WelcomeFlow extends BaseFlow {
 
@@ -45,21 +46,22 @@ public class WelcomeFlow extends BaseFlow {
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         LanguageComponent languageComponent = welcomeScreen.languageComponent();
 
-        // TODO: compare data from two list
+        // Get actual country list
         List<String> actualCountryList = languageComponent.getListCountry();
 
+        // Get expected country list
         LanguageData[] languageData = DataObjectBuilder.buildDataObject(fileLanguageDataPath, LanguageData[].class);
         List<String> expectedLanguageList = new ArrayList<>();
-
         for (LanguageData expectedLang : languageData) {
             expectedLanguageList.add(expectedLang.getLabel());
         }
 
-        for (String s : expectedLanguageList) {
-            System.out.println(s);
-        }
-        System.out.println(expectedLanguageList.size());
-        languageComponent.clickOnCancelBtn();
+        // Compare data, print different country from actual list
+        System.out.println(actualCountryList);
+
+        // TODO: select English again
+        languageComponent.selectRandomCountry(getRandomCountry(actualCountryList));
+        languageComponent.clickOnOklBtn();
     }
 
     @Step("Check Hi there! text is displayed correctly")
@@ -118,5 +120,13 @@ public class WelcomeFlow extends BaseFlow {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualLanguageTxtStr, expectedLanguageTxtStr, "[ERR] Language button is incorrect name");
         softAssert.assertAll();
+    }
+
+
+    private String getRandomCountry (List<String> countryList) {
+        Random random = new Random();
+        String randomElem = countryList.get(random.nextInt(countryList.size()));
+
+        return randomElem;
     }
 }
