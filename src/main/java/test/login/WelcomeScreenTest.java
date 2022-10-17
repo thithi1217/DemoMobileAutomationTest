@@ -6,20 +6,20 @@ import test_flows.login.WelcomeFlow;
 
 public class WelcomeScreenTest extends BaseTest {
 
-    @Test (description = "Verify UI on Welcome screen")
+    @Test (priority = 1, description = "Verify UI on Welcome screen")
     public void testUI() {
         WelcomeFlow welcomeFlow = new WelcomeFlow(getDriver());
         welcomeFlow.verifyUI();
     }
 
-    @Test (description = "Verify click on Login with Hahalolo button on Welcome screen")
+    @Test (priority = 2, description = "Verify click on Login with Hahalolo button on Welcome screen")
     public void testLoginHHLLBtn() {
         WelcomeFlow welcomeFlow = new WelcomeFlow(getDriver());
         welcomeFlow.goToLoginHHLLScreen();
         welcomeFlow.verifyNavToLoginHHLL();
     }
 
-    @Test (description = "Verify Language modal on Welcome screen")
+    @Test (priority = 3, description = "Verify Language modal on Welcome screen")
     public void testLanguageModal() {
         WelcomeFlow welcomeFlow = new WelcomeFlow(getDriver());
         welcomeFlow.goToLanguageModal();

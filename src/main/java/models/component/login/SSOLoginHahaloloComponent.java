@@ -20,13 +20,18 @@ public class SSOLoginHahaloloComponent {
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, Duration.ofSeconds(15)), this);
     }
 
+    private By hahaloloTitleSel = By.cssSelector("[text='Hahalolo']");
     private By accountIdTxtSel = By.id("accountId");
     private By passwordTxtSel = By.id("password");
     private By loginBtnSel = By.cssSelector("button[type='submit']");
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/back_btn")
     @iOSXCUITFindBy(accessibility = "close_dark")
     public MobileElement closeBtnElem;
+
+    public WebElement hahaloloTitleElem() {
+        return appiumDriver.findElement(hahaloloTitleSel);
+    }
 
     public WebElement accountIdTxtElem() {
         return appiumDriver.findElement(accountIdTxtSel);
@@ -42,6 +47,10 @@ public class SSOLoginHahaloloComponent {
 
     public void clickOnCloseBtn() {
         closeBtnElem.click();
+    }
+
+    public String getHahaloloTitleStr() {
+        return hahaloloTitleElem().getText().trim();
     }
 
     public void inputAccountIdTxt(String accountStr) {

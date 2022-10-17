@@ -1,5 +1,7 @@
 package test_flows.login;
 
+import context.SwitchContext;
+import context.WaitMoreThanOneContext;
 import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -8,6 +10,7 @@ import models.component.login.LanguageComponent;
 import models.component.login.SSOLoginHahaloloComponent;
 import models.component.login.WelcomeComponent;
 import models.pages.login.WelcomeScreen;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import test_data.DataObjectBuilder;
 import test_data.models.LanguageData;
@@ -26,7 +29,7 @@ public class WelcomeFlow extends BaseFlow {
     private final String expectedLoginAnonymouslyBtnLabel = "Log in Anonymously";
     private final String expectedCountryTxtStr = "English";
     private final String expectedLanguageTxtStr = "Language";
-    private final String expectediOSLanguageTitleTxtStr = "Select a language";
+    private final String expectedIOSLanguageTitleTxtStr = "Select a language";
     private final String expectedAndLanguageTitleTxtStr = "Language";
     private final String fileLanguageDataPath = "/src/main/java/test_data/login/Language.json";
 
@@ -51,6 +54,21 @@ public class WelcomeFlow extends BaseFlow {
     public void verifyNavToLoginHHLL() {
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         SSOLoginHahaloloComponent ssoLoginHahaloloComponent = welcomeScreen.ssoLoginHahaloloComponent();
+
+        // Wait until we have more than one context
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 15L);
+        wait.until(new WaitMoreThanOneContext(appiumDriver));
+
+        SwitchContext switchContext = new SwitchContext(appiumDriver);
+        switchContext.switchToWebViewContext();
+
+        String actualHahaloloTitleStr = ssoLoginHahaloloComponent.getHahaloloTitleStr();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actualHahaloloTitleStr, "Hahalolo", "[ERR] Hi there str is incorrect");
+        softAssert.assertAll();
+
+        switchContext.switchToNativeContext();
+        ssoLoginHahaloloComponent.clickOnCloseBtn();
     }
 
     @Step("Verify navigate to Language modal")
@@ -61,7 +79,7 @@ public class WelcomeFlow extends BaseFlow {
         String actualLanguageTitleTextStr = languageComponent.getTitleTxtStr();
         SoftAssert softAssert = new SoftAssert();
         if (Platforms.valueOf(appiumDriver.getPlatformName()) == Platforms.ios) {
-            softAssert.assertEquals(actualLanguageTitleTextStr, expectediOSLanguageTitleTxtStr, "[ERR] Language title is incorrect");
+            softAssert.assertEquals(actualLanguageTitleTextStr, expectedIOSLanguageTitleTxtStr, "[ERR] Language title is incorrect");
         } else {
             softAssert.assertEquals(actualLanguageTitleTextStr, expectedAndLanguageTitleTxtStr, "[ERR] Language title is incorrect");
         }

@@ -2,6 +2,7 @@ package context;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
 
@@ -16,12 +17,18 @@ public class SwitchContext {
     }
 
     public void switchToNativeContext() {
-        Set<String> contextNames = appiumDriver.getContextHandles();
+        Set<String> contextNames = setContextHandles();
         appiumDriver.context((String) contextNames.toArray()[NATIVE_CONTEXT_INDEX]);
     }
 
     public void switchToWebViewContext() {
-        Set<String> contextNames = appiumDriver.getContextHandles();
+        Set<String> contextNames = setContextHandles();
         appiumDriver.context((String) contextNames.toArray()[WEBVIEW_CONTEXT_INDEX]);
+    }
+
+    private Set<String> setContextHandles() {
+        // Get all contexts
+        Set<String> contextNames = appiumDriver.getContextHandles();
+        return contextNames;
     }
 }

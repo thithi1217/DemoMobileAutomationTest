@@ -14,7 +14,7 @@ public class DriverFactory implements MobileCapabilityTypeEx{
 
     private AppiumDriver<MobileElement> appiumDriver;
 
-    public AppiumDriver<MobileElement> getDriver(Platforms platform, String udid, String systemPort, String platformVersion) {
+    public AppiumDriver<MobileElement> getDriver(Platforms platform, String udid, String systemPort, String platformVersion, String deviceName) {
 
         if (appiumDriver == null) {
             if (platform == null) {
@@ -52,12 +52,14 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         break;
                     case ios:
                         desiredCaps.setCapability(AUTOMATION_NAME, "XCUITest");
-                        desiredCaps.setCapability(DEVICE_NAME, udid); //iPhone 12ßß
+                        desiredCaps.setCapability(UDID, udid); //iPhone 12
+                        desiredCaps.setCapability(DEVICE_NAME, deviceName); //iPhone 12
                         desiredCaps.setCapability(PLATFORM_VERSION, platformVersion); // 15.0 NOT 15.1.2
                         desiredCaps.setCapability(BUNDLE_ID, "com.hahalolo.ios.halome");
                         desiredCaps.setCapability(WDA_LOCAL_PORT, Integer.parseInt(systemPort));
                         desiredCaps.setCapability(LANGUAGE, "en");
                         desiredCaps.setCapability(LOCALE, "en");
+                        desiredCaps.setCapability("webviewConnectTimeout", "90000");
                         appiumDriver = new IOSDriver<>(targetServer, desiredCaps);
                 }
 
