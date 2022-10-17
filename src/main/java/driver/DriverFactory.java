@@ -46,14 +46,18 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         desiredCaps.setCapability(APP_PACKAGE, "com.hahalolo.android.halome");
                         desiredCaps.setCapability(APP_ACTIVITY, "com.halo.presentation.startapp.start.StartAct");
                         desiredCaps.setCapability(SYSTEM_PORT, Integer.parseInt(systemPort));
+                        desiredCaps.setCapability(LANGUAGE, "en");
+                        desiredCaps.setCapability(LOCALE, "en");
                         appiumDriver = new AndroidDriver<>(targetServer, desiredCaps);
                         break;
                     case ios:
                         desiredCaps.setCapability(AUTOMATION_NAME, "XCUITest");
-                        desiredCaps.setCapability(DEVICE_NAME, udid); //iPhone 12
+                        desiredCaps.setCapability(DEVICE_NAME, udid); //iPhone 12ßß
                         desiredCaps.setCapability(PLATFORM_VERSION, platformVersion); // 15.0 NOT 15.1.2
                         desiredCaps.setCapability(BUNDLE_ID, "com.hahalolo.ios.halome");
                         desiredCaps.setCapability(WDA_LOCAL_PORT, Integer.parseInt(systemPort));
+                        desiredCaps.setCapability(LANGUAGE, "en");
+                        desiredCaps.setCapability(LOCALE, "en");
                         appiumDriver = new IOSDriver<>(targetServer, desiredCaps);
                 }
 

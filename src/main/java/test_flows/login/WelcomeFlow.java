@@ -1,9 +1,11 @@
 package test_flows.login;
 
+import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
 import models.component.login.LanguageComponent;
+import models.component.login.SSOLoginHahaloloComponent;
 import models.component.login.WelcomeComponent;
 import models.pages.login.WelcomeScreen;
 import org.testng.asserts.SoftAssert;
@@ -24,6 +26,8 @@ public class WelcomeFlow extends BaseFlow {
     private final String expectedLoginAnonymouslyBtnLabel = "Log in Anonymously";
     private final String expectedCountryTxtStr = "English";
     private final String expectedLanguageTxtStr = "Language";
+    private final String expectediOSLanguageTitleTxtStr = "Select a language";
+    private final String expectedAndLanguageTitleTxtStr = "Language";
     private final String fileLanguageDataPath = "/src/main/java/test_data/login/Language.json";
 
     public WelcomeFlow(AppiumDriver<MobileElement> appiumDriver) {
@@ -31,6 +35,7 @@ public class WelcomeFlow extends BaseFlow {
         this.appiumDriver = appiumDriver;
     }
 
+    @Step("Verify Welcome screen is displayed correctly")
     public void verifyUI() {
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         WelcomeComponent welcomeComponent = welcomeScreen.welcomeComponent();
@@ -42,9 +47,37 @@ public class WelcomeFlow extends BaseFlow {
         verifyLanguageTxtStr(welcomeComponent);
     }
 
-    public void verifyLanguageBtn() {
+    @Step("Verify navigate to Login with Hahalolo screen")
+    public void verifyNavToLoginHHLL() {
+        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
+        SSOLoginHahaloloComponent ssoLoginHahaloloComponent = welcomeScreen.ssoLoginHahaloloComponent();
+    }
+
+    @Step("Verify navigate to Language modal")
+    public void verifyNavToLanguageModal() {
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         LanguageComponent languageComponent = welcomeScreen.languageComponent();
+
+        String actualLanguageTitleTextStr = languageComponent.getTitleTxtStr();
+        SoftAssert softAssert = new SoftAssert();
+        if (Platforms.valueOf(appiumDriver.getPlatformName()) == Platforms.ios) {
+            softAssert.assertEquals(actualLanguageTitleTextStr, expectediOSLanguageTitleTxtStr, "[ERR] Language title is incorrect");
+        } else {
+            softAssert.assertEquals(actualLanguageTitleTextStr, expectedAndLanguageTitleTxtStr, "[ERR] Language title is incorrect");
+        }
+        softAssert.assertAll();
+        languageComponent.clickOnCancelBtn();
+    }
+
+    public void verifyLanguageBtn() {
+        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
+        WelcomeComponent welcomeComponent = new WelcomeComponent(appiumDriver);
+        LanguageComponent languageComponent = welcomeScreen.languageComponent();
+
+        // Not English, choose English
+//        if (!welcomeComponent.getCountryTxtStr().equals(DEFAULT_LANGUAGE)) {
+//            languageComponent.selectRandomCountry(DEFAULT_LANGUAGE);
+//        }
 
         // Get actual country list
         List<String> actualCountryList = languageComponent.getListCountry();
@@ -57,11 +90,12 @@ public class WelcomeFlow extends BaseFlow {
         }
 
         // Compare data, print different country from actual list
+        actualCountryList.removeAll(expectedLanguageList);
         System.out.println(actualCountryList);
 
         // TODO: select English again
-        languageComponent.selectRandomCountry(getRandomCountry(actualCountryList));
-        languageComponent.clickOnOklBtn();
+//        languageComponent.selectRandomCountry(getRandomCountry(actualCountryList));
+        languageComponent.clickOnCancelBtn();
     }
 
     @Step("Check Hi there! text is displayed correctly")
@@ -123,7 +157,7 @@ public class WelcomeFlow extends BaseFlow {
     }
 
 
-    private String getRandomCountry (List<String> countryList) {
+    private String getRandomCountry(List<String> countryList) {
         Random random = new Random();
         String randomElem = countryList.get(random.nextInt(countryList.size()));
 

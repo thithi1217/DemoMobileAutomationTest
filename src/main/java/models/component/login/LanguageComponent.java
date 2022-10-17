@@ -39,9 +39,14 @@ public class LanguageComponent {
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Ok\"`]")
     public MobileElement okBtnElem;
 
-    // Android don't have Cancel button
-    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Cancel\"`]")
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/back_bt") // Back button
+    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Cancel\"`]") // Cancel button
     public MobileElement cancelBtnElem;
+
+    @Step("Get title text")
+    public String getTitleTxtStr() {
+        return titleTxtElem.getText().trim();
+    }
 
     @Step("Get all list country")
     public List<String> getListCountry() {

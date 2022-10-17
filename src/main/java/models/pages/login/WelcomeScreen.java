@@ -3,6 +3,7 @@ package models.pages.login;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import models.component.login.LanguageComponent;
+import models.component.login.SSOLoginHahaloloComponent;
 import models.component.login.WelcomeComponent;
 
 public class WelcomeScreen {
@@ -19,5 +20,9 @@ public class WelcomeScreen {
 
     public LanguageComponent languageComponent() {
         return new LanguageComponent(appiumDriver);
+    }
+
+    public SSOLoginHahaloloComponent ssoLoginHahaloloComponent() {
+        return new SSOLoginHahaloloComponent(appiumDriver);
     }
 }
