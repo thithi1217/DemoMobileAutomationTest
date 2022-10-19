@@ -1,5 +1,6 @@
 package test_flows;
 
+import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import models.pages.login.WelcomeScreen;

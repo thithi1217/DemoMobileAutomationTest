@@ -7,9 +7,12 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
 import models.component.login.LanguageComponent;
+import models.component.login.LoginAnonymouslyComponent;
 import models.component.login.SSOLoginHahaloloComponent;
 import models.component.login.WelcomeComponent;
 import models.pages.login.WelcomeScreen;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import test_data.DataObjectBuilder;
@@ -19,6 +22,7 @@ import test_flows.BaseFlow;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class WelcomeFlow extends BaseFlow {
 
@@ -52,23 +56,34 @@ public class WelcomeFlow extends BaseFlow {
 
     @Step("Verify navigate to Login with Hahalolo screen")
     public void verifyNavToLoginHHLL() {
-        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
-        SSOLoginHahaloloComponent ssoLoginHahaloloComponent = welcomeScreen.ssoLoginHahaloloComponent();
-
-        // Wait until we have more than one context
-        WebDriverWait wait = new WebDriverWait(appiumDriver, 15L);
-        wait.until(new WaitMoreThanOneContext(appiumDriver));
-
         SwitchContext switchContext = new SwitchContext(appiumDriver);
         switchContext.switchToWebViewContext();
 
+        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
+        SSOLoginHahaloloComponent ssoLoginHahaloloComponent = welcomeScreen.ssoLoginHahaloloComponent();
         String actualHahaloloTitleStr = ssoLoginHahaloloComponent.getHahaloloTitleStr();
+
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualHahaloloTitleStr, "Hahalolo", "[ERR] Hi there str is incorrect");
         softAssert.assertAll();
 
         switchContext.switchToNativeContext();
         ssoLoginHahaloloComponent.clickOnCloseBtn();
+    }
+
+    @Step("Verify navigate to Login Anonymously screen")
+    public void verifyNavToLoginAnonymously() {
+        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
+        LoginAnonymouslyComponent loginAnonymouslyComponent = welcomeScreen.loginAnonymouslyComponent();
+
+        boolean isPhoneHeadImgEnable = loginAnonymouslyComponent.phoneHeadImageElem.isEnabled();
+        boolean isPhoneHeadImgDisplay = loginAnonymouslyComponent.phoneHeadImageElem.isDisplayed();
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(isPhoneHeadImgEnable&&isPhoneHeadImgDisplay, "[ERR] Phone head image is existed");
+        softAssert.assertAll();
+
+        loginAnonymouslyComponent.clickOnCloseBtn();
     }
 
     @Step("Verify navigate to Language modal")
@@ -84,35 +99,6 @@ public class WelcomeFlow extends BaseFlow {
             softAssert.assertEquals(actualLanguageTitleTextStr, expectedAndLanguageTitleTxtStr, "[ERR] Language title is incorrect");
         }
         softAssert.assertAll();
-        languageComponent.clickOnCancelBtn();
-    }
-
-    public void verifyLanguageBtn() {
-        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
-        WelcomeComponent welcomeComponent = new WelcomeComponent(appiumDriver);
-        LanguageComponent languageComponent = welcomeScreen.languageComponent();
-
-        // Not English, choose English
-//        if (!welcomeComponent.getCountryTxtStr().equals(DEFAULT_LANGUAGE)) {
-//            languageComponent.selectRandomCountry(DEFAULT_LANGUAGE);
-//        }
-
-        // Get actual country list
-        List<String> actualCountryList = languageComponent.getListCountry();
-
-        // Get expected country list
-        LanguageData[] languageData = DataObjectBuilder.buildDataObject(fileLanguageDataPath, LanguageData[].class);
-        List<String> expectedLanguageList = new ArrayList<>();
-        for (LanguageData expectedLang : languageData) {
-            expectedLanguageList.add(expectedLang.getLabel());
-        }
-
-        // Compare data, print different country from actual list
-        actualCountryList.removeAll(expectedLanguageList);
-        System.out.println(actualCountryList);
-
-        // TODO: select English again
-//        languageComponent.selectRandomCountry(getRandomCountry(actualCountryList));
         languageComponent.clickOnCancelBtn();
     }
 
@@ -174,6 +160,34 @@ public class WelcomeFlow extends BaseFlow {
         softAssert.assertAll();
     }
 
+    public void verifyLanguageBtn() {
+        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
+        WelcomeComponent welcomeComponent = new WelcomeComponent(appiumDriver);
+        LanguageComponent languageComponent = welcomeScreen.languageComponent();
+
+        // Not English, choose English
+//        if (!welcomeComponent.getCountryTxtStr().equals(DEFAULT_LANGUAGE)) {
+//            languageComponent.selectRandomCountry(DEFAULT_LANGUAGE);
+//        }
+
+        // Get actual country list
+        List<String> actualCountryList = languageComponent.getListCountry();
+
+        // Get expected country list
+        LanguageData[] languageData = DataObjectBuilder.buildDataObject(fileLanguageDataPath, LanguageData[].class);
+        List<String> expectedLanguageList = new ArrayList<>();
+        for (LanguageData expectedLang : languageData) {
+            expectedLanguageList.add(expectedLang.getLabel());
+        }
+
+        // Compare data, print different country from actual list
+        actualCountryList.removeAll(expectedLanguageList);
+        System.out.println(actualCountryList);
+
+        // TODO: select English again
+//        languageComponent.selectRandomCountry(getRandomCountry(actualCountryList));
+        languageComponent.clickOnCancelBtn();
+    }
 
     private String getRandomCountry(List<String> countryList) {
         Random random = new Random();

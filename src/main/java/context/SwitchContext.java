@@ -27,6 +27,10 @@ public class SwitchContext {
     }
 
     private Set<String> setContextHandles() {
+        // Wait until we have more than one context
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 15L);
+        wait.until(new WaitMoreThanOneContext(appiumDriver));
+
         // Get all contexts
         Set<String> contextNames = appiumDriver.getContextHandles();
         return contextNames;

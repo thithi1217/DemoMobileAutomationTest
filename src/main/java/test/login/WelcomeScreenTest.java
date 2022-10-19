@@ -19,7 +19,14 @@ public class WelcomeScreenTest extends BaseTest {
         welcomeFlow.verifyNavToLoginHHLL();
     }
 
-    @Test (priority = 3, description = "Verify Language modal on Welcome screen")
+    @Test (priority = 3, description = "Verify click on Login with Hahalolo button on Welcome screen")
+    public void testLoginAnonymouslyBtn() {
+        WelcomeFlow welcomeFlow = new WelcomeFlow(getDriver());
+        welcomeFlow.goToLoginAnonymouslyScreen();
+        welcomeFlow.verifyNavToLoginAnonymously();
+    }
+
+    @Test (priority = 4, description = "Verify Language modal on Welcome screen")
     public void testLanguageModal() {
         WelcomeFlow welcomeFlow = new WelcomeFlow(getDriver());
         welcomeFlow.goToLanguageModal();

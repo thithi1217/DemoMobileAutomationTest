@@ -48,6 +48,7 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         desiredCaps.setCapability(SYSTEM_PORT, Integer.parseInt(systemPort));
                         desiredCaps.setCapability(LANGUAGE, "en");
                         desiredCaps.setCapability(LOCALE, "en");
+                        desiredCaps.setCapability("webviewConnectTimeout", "90000");
                         appiumDriver = new AndroidDriver<>(targetServer, desiredCaps);
                         break;
                     case ios:
@@ -72,7 +73,7 @@ public class DriverFactory implements MobileCapabilityTypeEx{
             }
 
             // Add IMPLICIT WAIT
-            appiumDriver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
+            appiumDriver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
         }
         return appiumDriver;
     }
