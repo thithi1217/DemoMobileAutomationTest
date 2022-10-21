@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class SwitchContext {
 
@@ -30,6 +31,12 @@ public class SwitchContext {
         // Wait until we have more than one context
         WebDriverWait wait = new WebDriverWait(appiumDriver, 15L);
         wait.until(new WaitMoreThanOneContext(appiumDriver));
+
+        // TODO: Trying to find other option waiting page SSO load
+        try {
+            // Wait web sso load
+            Thread.sleep(6000);
+        }catch (Exception ignored) {}
 
         // Get all contexts
         Set<String> contextNames = appiumDriver.getContextHandles();

@@ -56,12 +56,12 @@ public class SSOLoginHahaloloComponent {
         return hahaloloTitleElem().getText().trim();
     }
 
-    @Step("Input account {accountStr}")
+    @Step("Input account: {accountStr}")
     public void inputAccountIdTxt(String accountStr) {
         accountIdTxtElem().sendKeys(accountStr);
     }
 
-    @Step("Input account {passwordStr}")
+    @Step("Input password: {passwordStr}")
     public void inputPasswordTxt(String passwordStr) {
         passwordTxtElem().sendKeys(passwordStr);
     }

@@ -1,5 +1,6 @@
 package driver;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -48,7 +49,9 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         desiredCaps.setCapability(SYSTEM_PORT, Integer.parseInt(systemPort));
                         desiredCaps.setCapability(LANGUAGE, "en");
                         desiredCaps.setCapability(LOCALE, "en");
-                        desiredCaps.setCapability("webviewConnectTimeout", "90000");
+                        desiredCaps.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
+                        desiredCaps.setCapability("unicodeKeyboard", true);
+                        desiredCaps.setCapability("resetKeyboard", true);
                         appiumDriver = new AndroidDriver<>(targetServer, desiredCaps);
                         break;
                     case ios:
@@ -60,7 +63,7 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         desiredCaps.setCapability(WDA_LOCAL_PORT, Integer.parseInt(systemPort));
                         desiredCaps.setCapability(LANGUAGE, "en");
                         desiredCaps.setCapability(LOCALE, "en");
-                        desiredCaps.setCapability("webviewConnectTimeout", "90000");
+//                        desiredCaps.setCapability("webviewConnectTimeout", "90000");
                         appiumDriver = new IOSDriver<>(targetServer, desiredCaps);
                 }
 

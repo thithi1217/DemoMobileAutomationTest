@@ -67,6 +67,9 @@ public class WelcomeFlow extends BaseFlow {
         softAssert.assertEquals(actualHahaloloTitleStr, "Hahalolo", "[ERR] Hi there str is incorrect");
         softAssert.assertAll();
 
+        ssoLoginHahaloloComponent.inputAccountIdTxt("testhalo005@emailfree.cyou");
+        ssoLoginHahaloloComponent.inputPasswordTxt("Admin12345");
+
         switchContext.switchToNativeContext();
         ssoLoginHahaloloComponent.clickOnCloseBtn();
     }
