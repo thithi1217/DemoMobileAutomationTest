@@ -1,6 +1,6 @@
 package context;
 
 public interface Contexts {
-    String WEB_VIEW = "WEBVIEW_7893.1";
+    String WEB_VIEW = "WEBVIEW_com.hahalolo.android.halome";
     String NATIVE = "NATIVE_APP";
 }

@@ -1,7 +1,6 @@
 package test_flows.login;
 
 import context.SwitchContext;
-import context.WaitMoreThanOneContext;
 import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -11,9 +10,6 @@ import models.component.login.LoginAnonymouslyComponent;
 import models.component.login.SSOLoginHahaloloComponent;
 import models.component.login.WelcomeComponent;
 import models.pages.login.WelcomeScreen;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import test_data.DataObjectBuilder;
 import test_data.models.LanguageData;
@@ -22,7 +18,8 @@ import test_flows.BaseFlow;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
+import static common.Keyboard.pressKey;
 
 public class WelcomeFlow extends BaseFlow {
 
@@ -67,7 +64,7 @@ public class WelcomeFlow extends BaseFlow {
         softAssert.assertEquals(actualHahaloloTitleStr, "Hahalolo", "[ERR] Hi there str is incorrect");
         softAssert.assertAll();
 
-        ssoLoginHahaloloComponent.inputAccountIdTxt("testhalo005@emailfree.cyou");
+        ssoLoginHahaloloComponent.inputEmailTxt("testhalo005@emailfree.cyou");
         ssoLoginHahaloloComponent.inputPasswordTxt("Admin12345");
 
         switchContext.switchToNativeContext();
@@ -76,6 +73,9 @@ public class WelcomeFlow extends BaseFlow {
 
     @Step("Verify navigate to Login Anonymously screen")
     public void verifyNavToLoginAnonymously() {
+//        Keyboard keyboard = new Keyboard(appiumDriver);
+        pressKey(appiumDriver, "Done");
+
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         LoginAnonymouslyComponent loginAnonymouslyComponent = welcomeScreen.loginAnonymouslyComponent();
 

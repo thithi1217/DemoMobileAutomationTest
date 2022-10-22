@@ -1,0 +1,20 @@
+[
+  {
+    "email": "testhalo003@emailfree.cyou1",
+    "password": "Admin12345",
+    "displayName": "",
+    "avatar": false
+  },
+  {
+    "email": "testhalo003@emailfree.cyou",
+    "password": "Admin12345",
+    "displayName": "Halo Three Test",
+    "avatar": true
+  },
+  {
+    "email": "testhalo005@emailfree.cyou",
+    "password": "Admin12345",
+    "displayName": "Test Five Halo",
+    "avatar": false
+  }
+]

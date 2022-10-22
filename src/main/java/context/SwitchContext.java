@@ -36,7 +36,8 @@ public class SwitchContext {
         try {
             // Wait web sso load
             Thread.sleep(6000);
-        }catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         // Get all contexts
         Set<String> contextNames = appiumDriver.getContextHandles();

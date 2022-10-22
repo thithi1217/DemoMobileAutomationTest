@@ -63,7 +63,9 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         desiredCaps.setCapability(WDA_LOCAL_PORT, Integer.parseInt(systemPort));
                         desiredCaps.setCapability(LANGUAGE, "en");
                         desiredCaps.setCapability(LOCALE, "en");
-//                        desiredCaps.setCapability("webviewConnectTimeout", "90000");
+                        desiredCaps.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
+                        desiredCaps.setCapability("unicodeKeyboard", true);
+                        desiredCaps.setCapability("resetKeyboard", true);
                         appiumDriver = new IOSDriver<>(targetServer, desiredCaps);
                 }
 

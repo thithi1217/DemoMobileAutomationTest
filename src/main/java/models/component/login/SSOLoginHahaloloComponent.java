@@ -22,8 +22,9 @@ public class SSOLoginHahaloloComponent {
     }
 
     private By hahaloloTitleSel = By.xpath("//span[contains(text(), 'Hahalolo')]");
-    private By accountIdTxtSel = By.id("accountId");
+    private By emailTxtSel = By.id("accountId");
     private By passwordTxtSel = By.id("password");
+    private By errorTxtSel = By.xpath("//span[contains(text(), 'Tên tài khoản hoặc mật khẩu không chính xác')]");
     private By loginBtnSel = By.cssSelector("button[type='submit']");
 
     @AndroidFindBy(id = "com.hahalolo.android.halome:id/back_btn")
@@ -34,12 +35,16 @@ public class SSOLoginHahaloloComponent {
         return appiumDriver.findElement(hahaloloTitleSel);
     }
 
-    public WebElement accountIdTxtElem() {
-        return appiumDriver.findElement(accountIdTxtSel);
+    public WebElement emailTxtElem() {
+        return appiumDriver.findElement(emailTxtSel);
     }
 
     public WebElement passwordTxtElem() {
         return appiumDriver.findElement(passwordTxtSel);
+    }
+
+    public WebElement errorTxtElem() {
+        return appiumDriver.findElement(errorTxtSel);
     }
 
     public WebElement loginBtnElem() {
@@ -57,8 +62,8 @@ public class SSOLoginHahaloloComponent {
     }
 
     @Step("Input account: {accountStr}")
-    public void inputAccountIdTxt(String accountStr) {
-        accountIdTxtElem().sendKeys(accountStr);
+    public void inputEmailTxt(String emailStr) {
+        emailTxtElem().sendKeys(emailStr);
     }
 
     @Step("Input password: {passwordStr}")
@@ -66,7 +71,12 @@ public class SSOLoginHahaloloComponent {
         passwordTxtElem().sendKeys(passwordStr);
     }
 
-    @Step("Click on Login button")
+    @Step("Get error text")
+    public String getErrorTxtStr() {
+        return errorTxtElem().getText().trim();
+    }
+
+    @Step("Click on Login button at web sso screen")
     public void clickOnLoginBtn() {
         loginBtnElem().click();
     }
