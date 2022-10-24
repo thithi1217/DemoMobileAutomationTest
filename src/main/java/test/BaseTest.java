@@ -34,7 +34,7 @@ public class BaseTest {
     @BeforeTest(description = "Init appium session at Before Test")
     @BeforeClass(description = "Init appium session at Before Class")
     @Parameters({"udid", "systemPort", "platformName", "platformVersion", "deviceName"})
-    public void initAppiumSessionBeforeTest(String udid, String systemPort, String platformName, @Optional("platformVersion") String platformVersion, @Optional("deviceName") String deviceName) {
+    public void initAppiumSession(String udid, String systemPort, String platformName, @Optional("platformVersion") String platformVersion, @Optional("deviceName") String deviceName) {
         System.out.println("I'm running at: " + new GregorianCalendar().getTime().toString());
         System.out.println(udid + " || " + systemPort);
         this.udid = udid;
