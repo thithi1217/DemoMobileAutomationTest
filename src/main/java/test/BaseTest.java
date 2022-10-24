@@ -4,15 +4,14 @@ import driver.DriverFactory;
 import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.internal.CapabilityHelpers;
 import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.InputStream;
@@ -32,10 +31,11 @@ public class BaseTest {
     private String platformVersion;
     private String deviceName;
 
-    @BeforeTest(description = "Init appium session")
+    @BeforeTest(description = "Init appium session at Before Test")
+    @BeforeClass(description = "Init appium session at Before Class")
     @Parameters({"udid", "systemPort", "platformName", "platformVersion", "deviceName"})
-    public void initAppiumSession(String udid, String systemPort, String platformName, @Optional("platformVersion") String platformVersion, @Optional("deviceName") String deviceName) {
-        System.out.println("I'm running before test at: " + new GregorianCalendar().getTime().toString());
+    public void initAppiumSessionBeforeTest(String udid, String systemPort, String platformName, @Optional("platformVersion") String platformVersion, @Optional("deviceName") String deviceName) {
+        System.out.println("I'm running at: " + new GregorianCalendar().getTime().toString());
         System.out.println(udid + " || " + systemPort);
         this.udid = udid;
         this.systemPort = systemPort;
@@ -75,16 +75,21 @@ public class BaseTest {
             String dateTaken = y + "-" + m + "-" + d + "-" + hr + "-" + min + "-" + sec;
 
             // 3. File location with file extension
-            String fileLocation = System.getProperty("user.dir") + "/screenshots/" + testMethodName + "-" + dateTaken + ".png";
+            AppiumDriver<MobileElement> currentDriverThread = driverThread.get().getDriver(Platforms.valueOf(platformName), udid, systemPort, platformVersion, deviceName);
+            Capabilities caps = currentDriverThread.getCapabilities();
+            String currentUDID = CapabilityHelpers.getCapability(caps, "udid", String.class);
+
+            String fileLocation = System.getProperty("user.dir") + "/screenshots/" + currentUDID + "-" + testMethodName + "-" + dateTaken + ".png";
 
             // 4. Save
-            File screenshot = driverThread.get().getDriver(Platforms.valueOf(platformName), udid, systemPort, platformVersion, deviceName).getScreenshotAs(OutputType.FILE);
+            File screenshot = currentDriverThread.getScreenshotAs(OutputType.FILE);
 
             try {
                 FileUtils.copyFile(screenshot, new File(fileLocation));
 
                 // Get file content then attach to allure reporter
                 Path screenshotPathContent = Paths.get(fileLocation);
+
                 InputStream inputStream = Files.newInputStream(screenshotPathContent);
                 Allure.addAttachment(testMethodName + "-" + dateTaken, inputStream);
             } catch (Exception e) {

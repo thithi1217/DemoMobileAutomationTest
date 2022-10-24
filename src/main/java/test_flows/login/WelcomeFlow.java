@@ -74,7 +74,7 @@ public class WelcomeFlow extends BaseFlow {
     @Step("Verify navigate to Login Anonymously screen")
     public void verifyNavToLoginAnonymously() {
 //        Keyboard keyboard = new Keyboard(appiumDriver);
-        pressKey(appiumDriver, "Done");
+//        pressKey(appiumDriver, "Done");
 
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         LoginAnonymouslyComponent loginAnonymouslyComponent = welcomeScreen.loginAnonymouslyComponent();

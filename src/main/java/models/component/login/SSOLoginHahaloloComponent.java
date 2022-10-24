@@ -61,7 +61,7 @@ public class SSOLoginHahaloloComponent {
         return hahaloloTitleElem().getText().trim();
     }
 
-    @Step("Input account: {accountStr}")
+    @Step("Input account: {emailStr}")
     public void inputEmailTxt(String emailStr) {
         emailTxtElem().sendKeys(emailStr);
     }

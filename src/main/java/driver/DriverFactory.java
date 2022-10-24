@@ -49,23 +49,23 @@ public class DriverFactory implements MobileCapabilityTypeEx{
                         desiredCaps.setCapability(SYSTEM_PORT, Integer.parseInt(systemPort));
                         desiredCaps.setCapability(LANGUAGE, "en");
                         desiredCaps.setCapability(LOCALE, "en");
-                        desiredCaps.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
-                        desiredCaps.setCapability("unicodeKeyboard", true);
-                        desiredCaps.setCapability("resetKeyboard", true);
+//                        desiredCaps.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
+//                        desiredCaps.setCapability("unicodeKeyboard", true);
+//                        desiredCaps.setCapability("resetKeyboard", true);
                         appiumDriver = new AndroidDriver<>(targetServer, desiredCaps);
                         break;
                     case ios:
                         desiredCaps.setCapability(AUTOMATION_NAME, "XCUITest");
-                        desiredCaps.setCapability(UDID, udid); //iPhone 12
+                        desiredCaps.setCapability(UDID, udid);
                         desiredCaps.setCapability(DEVICE_NAME, deviceName); //iPhone 12
                         desiredCaps.setCapability(PLATFORM_VERSION, platformVersion); // 15.0 NOT 15.1.2
                         desiredCaps.setCapability(BUNDLE_ID, "com.hahalolo.ios.halome");
                         desiredCaps.setCapability(WDA_LOCAL_PORT, Integer.parseInt(systemPort));
                         desiredCaps.setCapability(LANGUAGE, "en");
                         desiredCaps.setCapability(LOCALE, "en");
-                        desiredCaps.setCapability("chromeOptions", ImmutableMap.of("w3c", false));
-                        desiredCaps.setCapability("unicodeKeyboard", true);
-                        desiredCaps.setCapability("resetKeyboard", true);
+//                        desiredCaps.setCapability("chromeOptions", ImmutableMap.of("w3c", true));
+//                        desiredCaps.setCapability("unicodeKeyboard", false);
+//                        desiredCaps.setCapability("resetKeyboard", false);
                         appiumDriver = new IOSDriver<>(targetServer, desiredCaps);
                 }
 
