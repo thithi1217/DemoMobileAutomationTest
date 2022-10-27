@@ -1,6 +1,7 @@
 package test_flows.login;
 
 import context.SwitchContext;
+import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
@@ -55,15 +56,16 @@ public class LoginWithHahaloloFlow extends BaseFlow {
     public void verifyLogin() {
         WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
         SSOLoginHahaloloComponent ssoLoginHahaloloComponent = welcomeScreen.ssoLoginHahaloloComponent();
-
         try {
+            Thread.sleep(5000);
             ssoLoginHahaloloComponent.errorTxtElem().isDisplayed();
             switchContext.switchToNativeContext();
             ssoLoginHahaloloComponent.clickOnCloseBtn();
         } catch (Exception ignored) {
-            switchContext.switchToNativeContext();
+            appiumDriver.context("NATIVE_APP");
             verifyUI();
         }
+
     }
 
     @Step("Verify UI")
@@ -79,8 +81,10 @@ public class LoginWithHahaloloFlow extends BaseFlow {
 
         // Back to welcome screen
         loginWithHahaloloComponent.clickOnBackBtn();
-        WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
-        welcomeScreen.ssoLoginHahaloloComponent().clickOnCloseBtn();
+        if (Platforms.valueOf(appiumDriver.getPlatformName()) == Platforms.ios){
+            WelcomeScreen welcomeScreen = new WelcomeScreen(appiumDriver);
+            welcomeScreen.ssoLoginHahaloloComponent().clickOnCloseBtn();
+        }
     }
 
     @Step("Check Logo Halome is existed")

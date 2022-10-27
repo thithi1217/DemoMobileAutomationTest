@@ -22,11 +22,16 @@ public class LoginAnonymouslyComponent {
     @AndroidFindBy(id = "com.hahalolo.android.halome:id/icon")
     @iOSXCUITFindBy(accessibility = "m2_auth_phone_head_image")
     public MobileElement phoneHeadImageElem;
-
+    @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeTextField[`value == \"Phone number\"`]")
+    public MobileElement phoneNumberElem;
     @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
     @iOSXCUITFindBy(accessibility = "close dark")
     public MobileElement closeBtnElem;
+    @Step("Click on Phone Number textbox")
 
+    public void clickOnPhoneNumberElem(){
+        phoneNumberElem.click();
+    }
     @Step("Click on Close button")
     public void clickOnCloseBtn() {
         closeBtnElem.click();

@@ -4,7 +4,8 @@
     "password": "Admin12345",
     "displayName": "",
     "avatar": false
-  },
+  }
+,
   {
     "email": "testhalo003@emailfree.cyou",
     "password": "Admin12345",
@@ -18,3 +19,4 @@
     "avatar": false
   }
 ]
+

@@ -40,6 +40,7 @@ public class WelcomeComponent {
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Log in Anonymously\"`]")
     public MobileElement loginAnonymouslyBtnElem;
 
+
     @AndroidFindBy(id = "com.hahalolo.android.halome:id/lang_tv")
     @iOSXCUITFindBy(accessibility = "English")
     public MobileElement countryTxtElem;
@@ -71,6 +72,7 @@ public class WelcomeComponent {
     public void clickOnLoginAnonymouslyBtn() {
         loginAnonymouslyBtnElem.click();
     }
+
 
     @Step("Get Country's name text")
     public String getCountryTxtStr() {

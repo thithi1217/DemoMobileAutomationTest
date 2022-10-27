@@ -18,32 +18,41 @@ public class LoginWithHahaloloComponent {
         this.appiumDriver = appiumDriver;
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, Duration.ofSeconds(15)), this);
     }
-
-    @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
+    //Icon button back
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/back_bt")
     @iOSXCUITFindBy(accessibility = "back dark")
     public MobileElement backBtnElem;
 
-    @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
+    //logo ở màn hình xác minh tk
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/app_ic")
     @iOSXCUITFindBy(accessibility = "logo_halome_new")
     public MobileElement logoHalomeElem;
 
-    @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
+    //avt ở trang xác minh tk
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/avatar_img")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeImage[3]")
     public MobileElement avatarUserElem;
 
-    @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
+    //avt render
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/avatar_img")
     @iOSXCUITFindBy(accessibility = "TF")
     public MobileElement notAvatarUserElem;
 
-    @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
+
+    //tên user ở trang xác minh tk
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/username_tv")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[1]")
     public MobileElement usernameElem;
 
-    @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
+
+    //button Tiếp tục ở trang xác minh tk
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/next_bt")
     @iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label == \"Continue\"`]")
     public MobileElement continueBtnElem;
 
-    @AndroidFindBy(id = "com.hahalolo.android.halome:id/close_bt")
+
+    //Link button "Không phải bạn..."
+    @AndroidFindBy(id = "com.hahalolo.android.halome:id/wrong_account_tv")
     @iOSXCUITFindBy(accessibility = "Not you? Tap here to change your account")
     public MobileElement tapHereLinkElem;
 

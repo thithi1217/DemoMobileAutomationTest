@@ -20,7 +20,7 @@ public class WelcomeScreenTest extends BaseTest {
     }
 
     @Test (description = "Verify click on Login Anonymously button on Welcome screen")
-    public void testLoginAnonymouslyBtn() {
+    public void testLoginAnonymouslyBtn() throws InterruptedException {
         WelcomeFlow welcomeFlow = new WelcomeFlow(getDriver());
         welcomeFlow.goToLoginAnonymouslyScreen();
         welcomeFlow.verifyNavToLoginAnonymously();

@@ -4,12 +4,15 @@ import context.SwitchContext;
 import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.HideKeyboardStrategy;
 import io.qameta.allure.Step;
 import models.component.login.LanguageComponent;
 import models.component.login.LoginAnonymouslyComponent;
 import models.component.login.SSOLoginHahaloloComponent;
 import models.component.login.WelcomeComponent;
 import models.pages.login.WelcomeScreen;
+import org.openqa.selenium.Keys;
 import org.testng.asserts.SoftAssert;
 import test_data.DataObjectBuilder;
 import test_data.models.LanguageData;
@@ -20,6 +23,7 @@ import java.util.List;
 import java.util.Random;
 
 import static common.Keyboard.pressKey;
+import static java.sql.DriverManager.getDriver;
 
 public class WelcomeFlow extends BaseFlow {
 
@@ -85,6 +89,16 @@ public class WelcomeFlow extends BaseFlow {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(isPhoneHeadImgEnable&&isPhoneHeadImgDisplay, "[ERR] Phone head image is existed");
         softAssert.assertAll();
+
+        loginAnonymouslyComponent.clickOnPhoneNumberElem();
+        //appiumDriver.hideKeyboard();
+        //((IOSDriver) appiumDriver).hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE);
+        //try{appiumDriver.hideKeyboard();}catch(Exception e){e.printStackTrace();}
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            e.getMessage();
+        }
 
         loginAnonymouslyComponent.clickOnCloseBtn();
     }
